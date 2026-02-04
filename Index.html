@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HiveAddis - AI-Powered Web Development Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --honey-gold: #D4A017;
+            --dark-gold: #B8860B;
+            --neon-accent: #00FFD1;
+            --deep-black: #0A0A0A;
+            --card-bg: #151515;
+            --text-light: #F5F5F5;
+            --text-muted: #888888;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--deep-black);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .hive-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%23D4A017' stroke-width='0.5'/%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 160, 23, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--honey-gold);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--honey-gold), var(--dark-gold));
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--deep-black);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--honey-gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--honey-gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--honey-gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Sections General */
+        section {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--honey-gold), var(--neon-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(212, 160, 23, 0.1);
+            border: 1px solid var(--honey-gold);
+            border-radius: 50px;
+            color: var(--honey-gold);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(212, 160, 23, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(212, 160, 23, 0); }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: var(--honey-gold);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--honey-gold), var(--neon-accent));
+            border-radius: 2px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--honey-gold), var(--dark-gold));
+            color: var(--deep-black);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 160, 23, 0.4);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--honey-gold);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            border: 2px solid var(--honey-gold);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--honey-gold);
+            color: var(--deep-black);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--honey-gold);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 160, 23, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--honey-gold), var(--neon-accent));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--honey-gold);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--honey-gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border: 2px solid rgba(212, 160, 23, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--honey-gold);
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(212, 160, 23, 0.2);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--honey-gold);
+            color: var(--deep-black);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--honey-gold);
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        .price-note {
+            color: var(--neon-accent);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .features {
+            list-style: none;
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .features li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--neon-accent);
+            font-weight: bold;
+        }
+
+        /* Process */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--honey-gold), var(--neon-accent));
+            z-index: 0;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--card-bg);
+            border: 2px solid var(--honey-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--honey-gold);
+            margin: 0 auto 1rem;
+        }
+
+        .step h4 {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Swarm Section */
+        .swarm-visual {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(0, 255, 209, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .swarm-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .swarm-feature {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .swarm-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(0, 255, 209, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .swarm-feature h4 {
+            color: var(--neon-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .swarm-feature p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .agent-terminal {
+            background: #000;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            font-family: 'Courier New', monospace;
+            border: 1px solid rgba(0, 255, 209, 0.2);
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .terminal-body {
+            color: #00ff00;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .terminal-line {
+            margin-bottom: 0.5rem;
+            opacity: 0;
+            animation: typeIn 0.5s forwards;
+        }
+
+        @keyframes typeIn {
+            to { opacity: 1; }
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info h3 {
+            color: var(--honey-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--card-bg);
+            border-radius: 12px;
+            transition: transform 0.3s;
+        }
+
+        .contact-method:hover {
+            transform: translateX(10px);
+            border-left: 3px solid var(--honey-gold);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 160, 23, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .contact-method div strong {
+            color: var(--text-light);
+            display: block;
+        }
+
+        .contact-method div span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 160, 23, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 160, 23, 0.2);
+            border-radius: 10px;
+            color: var(--text-light);
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--honey-gold);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 5%;
+            border-top: 1px solid rgba(212, 160, 23, 0.1);
+            background: var(--card-bg);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: rgba(212, 160, 23, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--honey-gold);
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(212, 160, 23, 0.2);
+        }
+
+        .social-links a:hover {
+            background: var(--honey-gold);
+            color: var(--deep-black);
+            transform: translateY(-3px);
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats {
+                gap: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .swarm-visual {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="hive-bg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon">H</div>
+            HiveAddis
+        </a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#swarm">The Swarm</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu">☰</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🚀 Now Serving Ethiopian Businesses</div>
+            <h1>The <span>Hive</span> Builds</h1>
+            <p>AI-powered web development agency. You talk to one. We deliver in days.<br>Professional websites built by autonomous agent swarms.</p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn-primary">Start Your Project</a>
+                <a href="#swarm" class="btn-secondary">Meet The Swarm</a>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-number" data-target="50">0</span>
+                    <span class="stat-label">Projects Delivered</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="5">0</span>
+                    <span class="stat-label">AI Agents</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="48">0</span>
+                    <span class="stat-label">Hour Delivery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2>What We Build</h2>
+        <p class="section-subtitle">From concept to launch, our swarm handles every layer</p>
+        
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon">🏢</div>
+                <h3>Business Websites</h3>
+                <p>Professional corporate sites that establish credibility and convert visitors into customers. Clean, fast, mobile-first.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🛒</div>
+                <h3>E-Commerce</h3>
+                <p>Full-featured online stores with payment integration, inventory management, and seamless checkout experiences.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🎨</div>
+                <h3>Portfolio Sites</h3>
+                <p>Showcase your work with stunning visual portfolios. Perfect for creatives, agencies, and professionals.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">📱</div>
+                <h3>Web Applications</h3>
+                <p>Interactive dashboards, SaaS platforms, and custom tools built with modern frameworks and scalable architecture.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🎯</div>
+                <h3>Landing Pages</h3>
+                <p>High-converting single-page sites optimized for campaigns, product launches, and lead generation.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon">🔧</div>
+                <h3>Redesign & Migration</h3>
+                <p>Modernize legacy sites, improve performance, or migrate to better platforms without losing SEO value.</p>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 4rem;">Pricing Plans</h2>
+        <p class="section-subtitle">Transparent pricing, exceptional value</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card fade-in">
+                <h3>Silver</h3>
+                <div class="price">9,000 <span>ETB</span></div>
+                <p class="price-note">One-time payment</p>
+                <ul class="features">
+                    <li>Custom website design</li>
+                    <li>Up to 5 pages</li>
+                    <li>Mobile responsive</li>
+                    <li>Basic SEO setup</li>
+                    <li>1 week delivery</li>
+                    <li>Source code included</li>
+                </ul>
+                <a href="#contact" class="btn-secondary" style="width: 100%; display: inline-block; text-align: center;">Get Started</a>
+            </div>
+
+            <div class="pricing-card featured fade-in">
+                <div class="featured-badge">⭐ Best Value</div>
+                <h3>Gold</h3>
+                <div class="price">12,000 <span>ETB</span></div>
+                <p class="price-note">One-time payment • Most Popular</p>
+                <ul class="features">
+                    <li>Everything in Silver</li>
+                    <li>Up to 10 pages</li>
+                    <li><strong>FREE Domain (.com)</strong></li>
+                    <li><strong>FREE Hosting (1 year)</strong></li>
+                    <li>Contact form integration</li>
+                    <li>Social media links</li>
+                    <li>Google Maps integration</li>
+                    <li>5 day delivery</li>
+                </ul>
+                <a href="#contact" class="btn-primary" style="width: 100%; display: inline-block; text-align: center;">Start Gold Project</a>
+            </div>
+
+            <div class="pricing-card fade-in">
+                <h3>Platinum</h3>
+                <div class="price">12,000 <span>ETB</span></div>
+                <p class="price-note">+ 3,000 ETB/month</p>
+                <ul class="features">
+                    <li>Everything in Gold</li>
+                    <li>Unlimited pages</li>
+                    <li>Advanced animations</li>
+                    <li>Monthly content updates</li>
+                    <li>Technical support 24/7</li>
+                    <li>Performance monitoring</li>
+                    <li>Security maintenance</li>
+                    <li>Priority delivery</li>
+                </ul>
+                <a href="#contact" class="btn-secondary" style="width: 100%; display: inline-block; text-align: center;">Go Platinum</a>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 4rem;">Our Process</h2>
+        <div class="process-steps">
+            <div class="step fade-in">
+                <div class="step-number">01</div>
+                <h4>Discovery</h4>
+                <p>We understand your goals, audience, and requirements</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">02</div>
+                <h4>Design</h4>
+                <p>AI agents generate mockups, you approve</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">03</div>
+                <h4>Development</h4>
+                <p>Swarm builds frontend, backend, and integrations</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">04</div>
+                <h4>Launch</h4>
+                <p>Deploy, test, and hand over your live site</p>
+            </div>
+            <div class="step fade-in">
+                <div class="step-number">05</div>
+                <h4>Support</h4>
+                <p>Ongoing maintenance and updates (Platinum)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Swarm Section -->
+    <section id="swarm">
+        <h2>The Swarm</h2>
+        <p class="section-subtitle">Meet your autonomous development team</p>
+
+        <div class="swarm-visual">
+            <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">
+                Multiple specialized AI agents working in parallel, 24/7, to deliver your project faster than traditional agencies.
+            </p>
+
+            <div class="swarm-grid">
+                <div class="swarm-feature fade-in">
+                    <div class="swarm-icon">⚡</div>
+                    <div>
+                        <h4>Lightning Speed</h4>
+                        <p>Multiple agents work simultaneously on different parts of your project. What takes agencies weeks, we deliver in days.</p>
+                    </div>
+                </div>
+                <div class="swarm-feature fade-in">
+                    <div class="swarm-icon">🎯</div>
+                    <div>
+                        <h4>Specialized Precision</h4>
+                        <p>Each agent masters one domain: design, frontend, backend, testing. Expert-level output at every layer.</p>
+                    </div>
+                </div>
+                <div class="swarm-feature fade-in">
+                    <div class="swarm-icon">🌙</div>
+                    <div>
+                        <h4>Never Sleeps</h4>
+                        <p>While you rest, the swarm works. Continuous progress, iterative improvements, round-the-clock development.</p>
+                    </div>
+                </div>
+                <div class="swarm-feature fade-in">
+                    <div class="swarm-icon">🧠</div>
+                    <div>
+                        <h4>Emergent Intelligence</h4>
+                        <p>Agents review each other's work, catch bugs, optimize performance. Collective quality control.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="agent-terminal">
+                <div class="terminal-header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                    <span style="color: var(--text-muted); margin-left: 1rem; font-size: 0.8rem;">hive_monitor.log</span>
+                </div>
+                <div class="terminal-body" id="terminal">
+                    <div class="terminal-line">[10:42:03] Scout-Agent: Analyzing project requirements...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Start Your Project</h2>
+        <p class="section-subtitle">Ready to build? Let's talk.</p>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contact Us Directly</h3>
+                
+                <div class="contact-method">
+                    <div class="contact-icon">📱</div>
+                    <div>
+                        <strong>Phone</strong>
+                        <span>+251 716 498 988</span>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">💬</div>
+                    <div>
+                        <strong>Telegram</strong>
+                        <span>@hive_addia</span>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <strong>Email</strong>
+                        <span>hiveaddis@gmail.com</span>
+                    </div>
+                </div>
+
+                <div class="contact-method">
+                    <div class="contact-icon">⏰</div>
+                    <div>
+                        <strong>Response Time</strong>
+                        <span>Usually within 2 hours</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form fade-in">
+                <form id="projectForm">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" placeholder="John Doe" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="john@example.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone (optional)</label>
+                        <input type="tel" placeholder="+251 9XX XXX XXX">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Project Type</label>
+                        <select required>
+                            <option value="">Select project type...</option>
+                            <option value="business">Business Website</option>
+                            <option value="ecommerce">E-Commerce Store</option>
+                            <option value="portfolio">Portfolio/Creative</option>
+                            <option value="webapp">Web Application</option>
+                            <option value="landing">Landing Page</option>
+                            <option value="redesign">Redesign/Migration</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Interested Package</label>
+                        <select>
+                            <option value="">Select package...</option>
+                            <option value="silver">Silver (9,000 ETB)</option>
+                            <option value="gold">Gold (12,000 ETB) - Featured</option>
+                            <option value="platinum">Platinum (12k + 3k/month)</option>
+                            <option value="not-sure">Not sure yet</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Tell Us About Your Project</label>
+                        <textarea placeholder="Describe your project, goals, timeline, and any specific requirements..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/hiveaddis" title="GitHub">GH</a>
+            <a href="https://linkedin.com/in/HIVEADDIS" title="LinkedIn">in</a>
+            <a href="https://youtube.com/@hiveaddis" title="YouTube">YT</a>
+            <a href="https://t.me/hiveaddis" title="Telegram">TG</a>
+        </div>
+        <p class="footer-text">
+            Built with 🐝 in Addis Ababa, Ethiopia<br>
+            © 2025 HiveAddis. All rights reserved.
+        </p>
+    </footer>
+
+    <script>
+        // Counter Animation
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const inc = target / speed;
+
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + inc);
+                    setTimeout(animateCounters, 20);
+                } else {
+                    counter.innerText = target + (target === 48 ? 'h' : '+');
+                }
+            });
+        };
+
+        // Trigger counters when visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.stats'));
+
+        // Fade in animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        fadeElements.forEach(el => fadeObserver.observe(el));
+
+        // Terminal typing effect
+        const terminalLines = [
+            { text: '[10:42:05] Design-Agent: Generating UI components...', delay: 1000 },
+            { text: '[10:42:08] Frontend-Agent: React components initialized', delay: 2000 },
+            { text: '[10:42:12] Backend-Agent: API endpoints configured', delay: 3000 },
+            { text: '[10:42:15] Review-Agent: Code quality check passed ✓', delay: 4000 },
+            { text: '[10:42:18] Deploy-Agent: Production build successful', delay: 5000 },
+            { text: '[10:42:20] Scout-Agent: Project delivered. Awaiting next task...', delay: 6000 }
+        ];
+
+        const terminal = document.getElementById('terminal');
+        
+        terminalLines.forEach((line, index) => {
+            setTimeout(() => {
+                const div = document.createElement('div');
+                div.className = 'terminal-line';
+                div.textContent = line.text;
+                terminal.appendChild(div);
+                terminal.scrollTop = terminal.scrollHeight;
+            }, line.delay);
+        });
+
+        // Form handling
+        document.getElementById('projectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for your message! We\'ll get back to you within 2 hours.');
+            this.reset();
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
